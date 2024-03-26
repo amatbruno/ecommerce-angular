@@ -1,12 +1,32 @@
+<style>
+    .custom-navbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        text-align: center;
+    }
+
+    .custom-title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-100%, -50%) rotate(90deg);
+        z-index: 10;
+        font-size: 300px;
+        text-align: start;
+    }
+</style>
+
 <header class="border-b border-black">
-    <div>
-        <img src="assets/images/homepage-img.png" class="z-0 w-screen h-screen absolute filter brightness-75"
-            alt="header_img">
-        <nav class="text-gray-300  flex justify-between m-auto w-[600px] relative">
-            <a class="text-lg" href="">Home</a>
-            <a class="text-lg" href="">Products</a>
-            <a class="text-lg" href="">New</a>
+    <div class="relative">
+        <img src="assets/images/homepage-img.png" class="z-0 w-screen h-screen brightness-50" alt="header_img">
+        <nav class="custom-navbar flex justify-between items-center text-gray-300 w-[500px] m-auto">
+            <button class="text-lg" routerLink="home">Home</button>
+            <button class="text-lg" routerLink="products">Products</button>
+            <button class="text-lg" routerLink="add-products">New</button>
         </nav>
-        <h1 class="relative text-[350px] font-sans text-gray-200 font-thin">HOME</h1>
+        <h1 class="custom-title text-gray-400">HOME</h1>
     </div>
 </header>
