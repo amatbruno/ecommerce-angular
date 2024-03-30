@@ -1,3 +1,20 @@
-<main>
-    form product works!
+<div class="flex gap-16 py-7 justify-center items-center">
+    NEW ARRIVALS
+</div>
+
+<main class="flex flex-col justify-center items-center py-10 bg-[wheat]">
+    <h1 class="text-2xl text-center font-bold mb-3">DON'T FIND YOUR PRODUCT? ADD IT HERE!</h1>
+    <form action="" class="flex flex-col">
+        <label for="name" class="text-lg mt-4 font-semibold">Name:</label>
+        <input type="text" name="name" id="name" class="border-2 border-black rounded-md text-md py-0.5 px-2 mb-4">
+
+        <label for="price" class="text-lg font-semibold">Price</label>
+        <input type="number" name="price" id="price" class="border-2 border-black rounded-md text-md py-0.5 px-2 mb-4">
+
+        <label for="desc" class="text-lg font-semibold">Description:</label>
+        <textarea rows="3" name="desc" id="desc"
+            class="border-2 border-black rounded-md text-md py-0.5 px-2 mb-4"></textarea>
+
+        <button class="py-1 px-4 text-lg rounded-lg bg-black text-white mt-4">ADD PRODUCT</button>
+    </form>
 </main>
