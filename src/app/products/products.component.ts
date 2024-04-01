@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DataService } from '../services/data-service.service';
 
 @Component({
   selector: 'app-products',
@@ -9,5 +10,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
+  products: any[] = [];
 
+  constructor(private dataService: DataService) { }
+
+  ngOnInit() {
+    this.dataService.getProductAddedObservable().subscribe((products:products[]) => {
+      console.log('Product added:', product);
+      this.products = product)};
+  }
 }

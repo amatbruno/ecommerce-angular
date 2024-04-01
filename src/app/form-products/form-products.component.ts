@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { DataService } from '../services/data-service.service';
 
 @Component({
   selector: 'app-form-products',
@@ -10,13 +11,14 @@ import { FormControl, Validators, ReactiveFormsModule, FormGroup } from '@angula
   styleUrl: './form-products.component.css'
 })
 
-export class FormProductsComponent {
+export class FormProductsComponent implements OnInit {
   productForm: FormGroup;
   isFormSubmitted: boolean = false;
 
   products: any[] = [];
 
-  constructor() {
+
+  constructor(private dataService: DataService) {
     this.productForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(5)]),
       price: new FormControl('', [Validators.required, Validators.max(750)]),
@@ -24,7 +26,11 @@ export class FormProductsComponent {
     })
   }
 
+  ngOnInit() { }
+
   add() {
-    this.products.push(this.productForm.value);
+    this.dataService.emitProductAdded(this.productForm.value);
+
+    console.log(this.productForm.value)
   }
 }
