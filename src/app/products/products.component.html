@@ -39,7 +39,13 @@
 </div>
 
 <section class="bg-[wheat]">
-    aqui van los productos
-    COMPONENTE
-    <!--AQUI VA EL COMPONENTE CARTA DE PRODUCTO-->
+
+    <!--here goes the form data-->
+    <table>
+        <tr *ngFor="let product of products; let i = index;">
+            <td>{{product.name}}</td>
+            <td>{{product.price}}€</td>
+            <td>{{product.desc}}</td>
+        </tr>
+    </table>
 </section>
