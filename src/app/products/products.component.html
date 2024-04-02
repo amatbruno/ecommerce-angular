@@ -41,15 +41,20 @@
 <section class="bg-[wheat]">
 
     <!--here goes the form data-->
-    <table>
+    <table class="grid grid-cols-4 gap-0.5">
         <!-- <tr *ngFor="let product of products; let i = index;">
             <td>{{product.name}}</td>
             <td>{{product.price}}€</td>
             <td>{{product.desc}}</td> -->
-        <tr>
-            <td>Nombre producto</td>
-            <td>22€</td>
-            <td>Descripción del producto</td>
+        <tr *ngFor="let product of products; let i = index;"
+            class="flex flex-col border border-gray-400 justify-center items-center py-5">
+            <!-- <td><img src="https://thumbs.dreamstime.com/b/vertical-panorama-country-road-9905521.jpg" alt="product_img"
+                    width="220" height="350" class="py-7"></td> -->
+            <div class="flex items-center text-lg font-medium">
+                <td>{{product.name}}</td>
+                <td> - {{product.price}}€</td>
+            </div>
+            <td class="text-md">{{product.desc}}</td>
         </tr>
     </table>
 </section>
