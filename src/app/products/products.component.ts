@@ -15,8 +15,9 @@ export class ProductsComponent {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.getProductAddedObservable().subscribe((products:products[]) => {
-      console.log('Product added:', product);
-      this.products = product)};
+    this.dataService.getProducts().subscribe(products => {
+      console.log('Product added:', products);
+      this.products = products;
+    })
   }
 }

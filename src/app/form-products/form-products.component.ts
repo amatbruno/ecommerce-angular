@@ -29,8 +29,8 @@ export class FormProductsComponent implements OnInit {
   ngOnInit() { }
 
   add() {
-    this.dataService.emitProductAdded(this.productForm.value);
-
-    console.log(this.productForm.value)
+    this.dataService.sendProducts([this.productForm.value]);
+    this.productForm.reset();
+    // console.log(this.productForm.value)
   }
 }

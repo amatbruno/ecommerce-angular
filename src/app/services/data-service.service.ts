@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  private productAddedSubject = new Subject<any>();
-
   constructor() { }
 
-  emitProductAdded(product: any) {
-    this.productAddedSubject.next(product);
+  private products: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+
+  public sendProducts(products: any[]): void {
+    this.products.next(products);
   }
 
-  getProductAddedObservable(): Observable<any> {
-    return this.productAddedSubject.asObservable();
+  public getProducts(): Observable<any[]> {
+    return this.products;
   }
 }
