@@ -2,7 +2,7 @@
     <h1 class="text-3xl">TEXTO DE EJEMPLO</h1>
     <div class="flex gap-16">
         <select name="filters" class="border border-black rounded-md px-2 font-semibold">
-            <option value="" selected disabled hidden>SORT PRODUCTS BY</option>
+            <option selected disabled hidden>SORT PRODUCTS BY</option>
             <option value="lower">LOWER PRICE</option>
             <option value="higher">HIGHER PRICE</option>
             <option value="az">A - Z</option>
@@ -39,18 +39,20 @@
 </div>
 
 <section class="bg-[wheat]">
-
-    <!--here goes the form data-->
-    <table class="grid grid-cols-4 gap-0.5">
-        <tr *ngFor="let product of products; let i = index;"
-            class="flex flex-col border border-gray-400 justify-center items-center py-5">
-            <!-- <td><img src="https://thumbs.dreamstime.com/b/vertical-panorama-country-road-9905521.jpg" alt="product_img"
-                    width="220" height="350" class="py-7"></td> -->
-            <div class="flex items-center text-lg font-medium">
-                <td>{{product.name}}</td>
-                <td> - {{product.price}}€</td>
+    <article class="grid grid-cols-4 gap-0.5">
+        <div *ngFor="let product of products; let i = index;" class="flex flex-col border border-gray-400 py-5 px-5">
+            <div class="flex justify-center">
+                <td><img src="/assets/images/coat-hanger.png" alt="product_img" width="220" height="350" class="py-7">
+                </td>
             </div>
-            <td class="text-md">{{product.desc}}</td>
-        </tr>
-    </table>
+            <div class="flex justify-around items-center">
+                <span class="font-medium text-2xl">{{product.name}}</span>
+                <span class="text-xl">{{product.price}}€</span>
+            </div>
+            <span class="text-md text-center py-5">{{product.desc}}</span>
+            <div class="flex justify-end">
+                <span class="text-sm text-gray-600">Product added the {{product.date}}</span>
+            </div>
+        </div>
+    </article>
 </section>

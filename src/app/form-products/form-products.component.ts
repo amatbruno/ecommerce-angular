@@ -17,12 +17,13 @@ export class FormProductsComponent implements OnInit {
 
   products: any[] = [];
 
-
   constructor(private dataService: DataService) {
     this.productForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(5)]),
       price: new FormControl('', [Validators.required, Validators.max(750)]),
       desc: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      sale: new FormControl(''),
+      date: new FormControl('', [Validators.required]),
     })
   }
 
@@ -31,6 +32,5 @@ export class FormProductsComponent implements OnInit {
   add() {
     this.dataService.sendProducts([this.productForm.value]);
     this.productForm.reset();
-    // console.log(this.productForm.value)
   }
 }
