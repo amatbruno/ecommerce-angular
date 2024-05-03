@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { DataService } from '../services/data-service.service';
+import { DataService } from '../../services/data-service.service';
 
 @Component({
   selector: 'app-form-products',

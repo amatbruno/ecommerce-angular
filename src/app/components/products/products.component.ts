@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataService } from '../services/data-service.service';
+import { DataService } from '../../services/data-service.service';
 
 @Component({
   selector: 'app-products',
