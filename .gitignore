@@ -5,7 +5,9 @@
 /tmp
 /out-tsc
 /bazel-out
-/src/app/constants/*.ts
+
+# .gitignore
+/src/environments/*.ts
 
 # Node
 /node_modules
