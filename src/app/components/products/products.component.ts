@@ -2,24 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data-service.service';
 import { Products } from '../../models/common.model';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
 export class ProductsComponent implements OnInit {
   products: Products[] = [];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private router: Router) { }
 
-  ngOnInit() {
-    this.getAllExpenses();
+  ngOnInit(): void {
+    this.getAllProducts();
   }
 
-  getAllExpenses() {
+  getAllProducts() {
     this.dataService.getAllProducts().snapshotChanges().subscribe({
       next: (data) => {
         this.products = [];
@@ -38,6 +39,16 @@ export class ProductsComponent implements OnInit {
         })
       }
     })
+  }
+
+  editProduct(key: string) {
+    this.router.navigate(['/add/' + key])
+  }
+
+  removeProduct(key: string) {
+    if (window.confirm('You gonna delete a product, are you sure?')) {
+      this.dataService.deleteProduct(key)
+    }
   }
 
 }
