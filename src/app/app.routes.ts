@@ -4,6 +4,6 @@ import { FormProductsComponent } from './components/form-products/form-products.
 
 export const routes: Routes = [
     { path: 'products', component: ProductsComponent },
-    { path: 'add-products', component: FormProductsComponent },
+    { path: 'add', component: FormProductsComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

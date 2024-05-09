@@ -1,19 +1,38 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import { Products } from '../models/common.model';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class DataService {
-  constructor() { }
 
-  private products: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  private dbUrl = "/products";
+  productsRef: AngularFireList<any>;
 
-  public sendProducts(products: any[]): void {
-    this.products.next(products);
+  constructor(private db: AngularFireDatabase) {
+    this.productsRef = db.list(this.dbUrl);
   }
 
-  public getProducts(): Observable<any[]> {
-    return this.products;
+  getAllProducts() {
+    return this.productsRef;
   }
+
+  getProduct(key: string) {
+    return this.db.object(`${this.dbUrl}/${key}`);
+  }
+
+  addProduct(product: Products) {
+    this.productsRef.push(product)
+  }
+
+  updateProduct(key: string, product: Products) {
+    this.productsRef.update(key, product)
+  }
+
+  deleteProduct(key: string) {
+    return this.productsRef.remove(key)
+  }
+
 }
