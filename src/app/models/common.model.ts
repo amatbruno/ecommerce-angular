@@ -4,5 +4,5 @@ export interface Products {
     price: number,
     description: string,
     onSale: boolean,
-    date: string
+    date: string,
 }

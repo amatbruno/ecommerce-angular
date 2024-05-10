@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data-service.service';
 import { Products } from '../../models/common.model';
 import { Router, RouterModule } from '@angular/router';
+import { FileUpload } from '../../models/file-upload';
+import { FileUploadService } from '../../services/file-upload.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -13,11 +16,23 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class ProductsComponent implements OnInit {
   products: Products[] = [];
+  @Input() fileUpload!: FileUpload;
+  fileUploads!: any[];
 
-  constructor(private dataService: DataService, private router: Router) { }
+  constructor(private dataService: DataService,
+    private router: Router,
+    private uploadService: FileUploadService) { }
 
   ngOnInit(): void {
     this.getAllProducts();
+
+    this.uploadService.getFiles(6).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(fileUploads => {
+      this.fileUploads = fileUploads;
+    });
   }
 
   getAllProducts() {
@@ -50,5 +65,7 @@ export class ProductsComponent implements OnInit {
       this.dataService.deleteProduct(key)
     }
   }
+
+
 
 }

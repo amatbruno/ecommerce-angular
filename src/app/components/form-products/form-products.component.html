@@ -59,10 +59,20 @@
             </div>
 
             <!--INPUT FILE-->
-            <label for="date" class="text-lg font-semibold mt-2">Product Photo:</label>
-            <input type="file" formControlName="file" class="border border-black rounded-md text-md py-1 px-2 mb-1">
+            <label for="photo" class="text-lg font-semibold mt-2">Photo:</label>
+            <input type="file" (change)="selectFile($event)" id="photo"
+                class="rounded-md text-md py-1 px-2 mb-1">
+            <!--INPUT ANIMATION-->
+            @if (currentFileUpload) {
+            <div class="progress mt-2">
+                <div class="progress-bar progress-bar-info" role="progressbar" attr.aria-valuenow="{{ percentage }}"
+                    aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: percentage + '%' }">
+                    {{ percentage }}%
+                </div>
+            </div>
+            }
 
-            <button type="submit"
+            <button type="submit" (click)="upload()"
                 class="py-1 px-4 text-lg rounded-lg bg-[wheat] border border-black text-black font-medium mt-6 hover:bg-black hover:text-[wheat] hover:transition-all">Add
                 Product</button>
         </form>
