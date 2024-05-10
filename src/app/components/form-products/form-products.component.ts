@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { DataService } from '../services/data-service.service';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, Validators, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { DataService } from '../../services/data-service.service';
+import { Products } from '../../models/common.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-products',
@@ -12,25 +14,27 @@ import { DataService } from '../services/data-service.service';
 })
 
 export class FormProductsComponent implements OnInit {
-  productForm: FormGroup;
-  isFormSubmitted: boolean = false;
+  productForm!: FormGroup;
+  productId = '';
+  products: Products[] = [];
 
-  products: any[] = [];
-
-  constructor(private dataService: DataService) {
-    this.productForm = new FormGroup({
+  constructor(private fb: FormBuilder,
+    private dataService: DataService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
+    this.productForm = this.fb.group({
       name: new FormControl('', [Validators.required, Validators.minLength(5)]),
       price: new FormControl('', [Validators.required, Validators.max(750)]),
       desc: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       sale: new FormControl(''),
       date: new FormControl('', [Validators.required]),
+      photo: new FormControl(''),
     })
   }
 
-  ngOnInit() { }
-
-  add() {
-    this.dataService.sendProducts([this.productForm.value]);
-    this.productForm.reset();
+  ngOnInit(): void {
   }
+
+
+
 }
