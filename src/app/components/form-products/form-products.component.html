@@ -5,62 +5,75 @@
 <main class="flex flex-col justify-center items-center py-10 bg-[wheat]">
     <div class="border-2 border-black px-12 py-20 bg-white rounded-2xl">
         <h1 class="text-2xl text-center font-bold mb-3 w-[450px]">DON'T FIND YOUR PRODUCT? ADD IT HERE!</h1>
-        <form class="flex flex-col" [formGroup]="productForm">
-            <!--NAME INPUT-->
-            <label for="name" class="text-lg mt-4 font-semibold">Name:</label>
-            <input type="text" formControlName="name" class="border border-black rounded-md text-md py-1 px-2 mb-1">
-            <!--VALIDATOR NAME-->
-            <div class="bg-red-300 border text-red-800 border-red-800 mb-4 rounded-sm text-sm w-fit px-1"
-                *ngIf="productForm.controls['name'].invalid && productForm.controls['name'].dirty">
-                <span *ngIf="productForm.controls['name'].errors?.['required']">❌The product name is required</span>
-                <span *ngIf="productForm.controls['name'].errors?.['minlength']">❌It must have at least 5
-                    characters</span>
-            </div>
+        <form [formGroup]="productForm">
+            <div class="flex flex-col" *ngIf="!submitted">
+                <!--NAME INPUT-->
+                <label for="name" class="text-lg mt-4 font-semibold">Name:</label>
+                <input type="text" formControlName="name" class="border border-black rounded-md text-md py-1 px-2 mb-1">
+                <!--VALIDATOR NAME-->
+                <div class="bg-red-300 border text-red-800 border-red-800 mb-4 rounded-sm text-sm w-fit px-1"
+                    *ngIf="productForm.controls['name'].invalid && productForm.controls['name'].dirty">
+                    <span *ngIf="productForm.controls['name'].errors?.['required']">❌The product name is required</span>
+                    <span *ngIf="productForm.controls['name'].errors?.['minlength']">❌It must have at least 5
+                        characters</span>
+                </div>
 
-            <!--PRICE INPUT-->
-            <label for="price" class="text-lg font-semibold mt-2">Price</label>
-            <input type="number" formControlName="price" class="border border-black rounded-md text-md py-1 px-2 mb-1">
-            <!--VALIDATOR PRICE-->
-            <div class="bg-red-300 border text-red-800 border-red-800 mb-4 rounded-sm text-sm w-fit px-1"
-                *ngIf="productForm.controls['price'].invalid && productForm.controls['price'].dirty">
-                <span *ngIf="productForm.controls['price'].errors?.['required']">❌The product price is required</span>
-                <span *ngIf="productForm.controls['price'].errors?.['max']">❌It must be less than 750€</span>
-            </div>
+                <!--PRICE INPUT-->
+                <label for="price" class="text-lg font-semibold mt-2">Price</label>
+                <input type="number" formControlName="price"
+                    class="border border-black rounded-md text-md py-1 px-2 mb-1">
+                <!--VALIDATOR PRICE-->
+                <div class="bg-red-300 border text-red-800 border-red-800 mb-4 rounded-sm text-sm w-fit px-1"
+                    *ngIf="productForm.controls['price'].invalid && productForm.controls['price'].dirty">
+                    <span *ngIf="productForm.controls['price'].errors?.['required']">❌The product price is
+                        required</span>
+                    <span *ngIf="productForm.controls['price'].errors?.['max']">❌It must be less than 750€</span>
+                </div>
 
-            <!--DESCRIPTION INPUT-->
-            <label for="desc" class="text-lg font-semibold mt-2">Description:</label>
-            <textarea rows="3" formControlName="desc" class="border border-black rounded-md text-md py-1 px-2 mb-1">
-        </textarea>
-            <!--VALIDATOR DESC-->
-            <div class="bg-red-300 border text-red-800 border-red-800 mb-4 rounded-sm text-sm w-fit px-1"
-                *ngIf="productForm.controls['desc'].invalid && productForm.controls['desc'].dirty">
-                <span *ngIf="productForm.controls['desc'].errors?.['required']">❌The product description is
-                    required</span>
-                <span *ngIf="productForm.controls['desc'].errors?.['maxlength']">❌Description must have a max length of
-                    100</span>
-            </div>
+                <!--DESCRIPTION INPUT-->
+                <label for="desc" class="text-lg font-semibold mt-2">Description:</label>
+                <textarea rows="3" formControlName="desc"
+                    class="border border-black rounded-md text-md py-1 px-2 mb-1"></textarea>
+                <!--VALIDATOR DESC-->
+                <div class="bg-red-300 border text-red-800 border-red-800 mb-4 rounded-sm text-sm w-fit px-1"
+                    *ngIf="productForm.controls['desc'].invalid && productForm.controls['desc'].dirty">
+                    <span *ngIf="productForm.controls['desc'].errors?.['required']">❌The product description is
+                        required</span>
+                    <span *ngIf="productForm.controls['desc'].errors?.['maxlength']">❌Description must have a max length
+                        of
+                        100</span>
+                </div>
 
-            <!--INPUT SALE-->
-            <div class="flex justify-start items-center gap-3 mt-2">
-                <label for="sale" class="text-lg font-semibold">On sale?</label>
-                <input type="checkbox" name="sale" class="text-xl">
-            </div>
+                <!--INPUT SALE-->
+                <div class="flex justify-start items-center gap-3 mt-2">
+                    <label for="sale" class="text-lg font-semibold">On sale?</label>
+                    <input type="checkbox" name="sale" class="text-xl">
+                </div>
 
-            <!--INPUT DATE-->
-            <label for="date" class="text-lg font-semibold mt-2">Date:</label>
-            <input type="date" formControlName="date" class="border border-black rounded-md text-md py-1 px-2 mb-1">
-            <!--VALIDATOR DESC-->
-            <div class="bg-red-300 border text-red-800 border-red-800 mb-4 rounded-sm text-sm w-fit px-1"
-                *ngIf="productForm.controls['date'].invalid && productForm.controls['date'].dirty">
-                <span *ngIf="productForm.controls['date'].errors?.['required']">❌The product description is
-                    required</span>
-                <span *ngIf="productForm.controls['date'].errors?.['maxlength']">❌Description must have a max length of
-                    100</span>
-            </div>
+                <!--INPUT DATE-->
+                <label for="date" class="text-lg font-semibold mt-2">Date:</label>
+                <input type="date" formControlName="date" class="border border-black rounded-md text-md py-1 px-2 mb-1">
+                <!--VALIDATOR DESC-->
+                <div class="bg-red-300 border text-red-800 border-red-800 mb-4 rounded-sm text-sm w-fit px-1"
+                    *ngIf="productForm.controls['date'].invalid && productForm.controls['date'].dirty">
+                    <span *ngIf="productForm.controls['date'].errors?.['required']">❌The product description is
+                        required</span>
+                    <span *ngIf="productForm.controls['date'].errors?.['maxlength']">❌Description must have a max length
+                        of
+                        100</span>
+                </div>
 
-            <button type="submit"
-                class="py-1 px-4 text-lg rounded-lg bg-[wheat] border border-black text-black font-medium mt-6 hover:bg-black hover:text-[wheat] hover:transition-all">Add
-                Product</button>
+                <button (click)="saveProduct()"
+                    class="py-1 px-4 text-lg rounded-lg bg-[wheat] border border-black text-black font-medium mt-6 hover:bg-black hover:text-[wheat] hover:transition-all">Add
+                    Product</button>
+            </div>
+            <div class="flex flex-col" *ngIf="submitted">
+                <h1 class="text-2xl text-center font-bold mb-3 w-[450px]">Product added succesfully! Do you want to add
+                    another?</h1>
+                <button (click)="newProduct()"
+                    class="py-1 px-4 text-lg rounded-lg bg-[wheat] border border-black text-black font-medium mt-6 hover:bg-black hover:text-[wheat] hover:transition-all">Add
+                    Product</button>
+            </div>
         </form>
     </div>
 </main>
