@@ -12,46 +12,14 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './products.component.css'
 })
 export class ProductsComponent implements OnInit {
-  products: Products[] = [];
-  fileUploads!: any[];
 
-  constructor(private dataService: DataService,
-    private router: Router) { }
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    
+
   }
 
-  getAllProducts() {
-    this.dataService.getAllProducts().snapshotChanges().subscribe({
-      next: (data) => {
-        this.products = [];
-
-        data.forEach((item) => {
-          let product = item.payload.toJSON() as Products;
-
-          this.products.push({
-            key: item.key || '',
-            name: product.name,
-            price: product.price,
-            description: product.description,
-            onSale: product.onSale,
-            date: product.date
-          })
-        })
-      }
-    })
-  }
-
-  editProduct(key: string) {
-    this.router.navigate(['/add/' + key])
-  }
-
-  removeProduct(key: string) {
-    if (window.confirm('You gonna delete a product, are you sure?')) {
-      this.dataService.deleteProduct(key)
-    }
-  }
 
 
 
