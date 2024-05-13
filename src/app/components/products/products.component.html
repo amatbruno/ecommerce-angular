@@ -40,14 +40,14 @@
 
 <section class="bg-[wheat]">
     <article class="grid grid-cols-4 gap-0.5">
-        <div *ngFor="let product of products; let i = index;" class="flex flex-col border border-gray-400 py-5 px-5">
+        <!-- <div *ngFor="let product of products; let i = index;" class="flex flex-col border border-gray-400 py-5 px-5">
             <div class="flex justify-end items-center gap-3">
-                <button class="border" (click)="editProduct(product.key!)">Edit</button>
-                <button class="border" (click)="removeProduct(product.key!)">Delete</button>
+                <button class="border" >Edit</button>
+                <button class="border" >Delete</button>
             </div>
             <div class="flex justify-center">
                 <td>
-                    <img src='{{ fileUpload.url }}' alt="product_img" width="220" height="350" class="py-7">
+                    <img src='#' alt="product_img" width="220" height="350" class="py-7">
                 </td>
             </div>
             <div class="flex justify-around items-center">
@@ -58,6 +58,6 @@
             <div class="flex justify-end">
                 <span class="text-sm text-gray-600">Product added the {{product.date}}</span>
             </div>
-        </div>
+        </div> -->
     </article>
 </section>

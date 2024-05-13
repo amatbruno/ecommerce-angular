@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { Products } from '../models/common.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+const baseUrl = 'http://localhost:8080/api/products'
 
 @Injectable({
   providedIn: 'root'
@@ -8,31 +11,25 @@ import { Products } from '../models/common.model';
 
 export class DataService {
 
-  private dbUrl = "/products";
-  productsRef: AngularFireList<any>;
+  constructor(private http: HttpClient) { }
 
-  constructor(private db: AngularFireDatabase) {
-    this.productsRef = db.list(this.dbUrl);
+  getAll(): Observable<Products[]> {
+    return this.http.get<Products[]>(baseUrl);
   }
 
-  getAllProducts() {
-    return this.productsRef;
+  get(id: any): Observable<Products> {
+    return this.http.get(`${baseUrl}/${id}`)
   }
 
-  getProduct(key: string) {
-    return this.db.object(`${this.dbUrl}/${key}`);
+  create(data: any): Observable<any> {
+    return this.http.post(baseUrl, data);
   }
 
-  addProduct(product: Products) {
-    this.productsRef.push(product)
+  update(id: any, data: any): Observable<any> {
+    return this.http.put(`${baseUrl}/${id}`, data);
   }
 
-  updateProduct(key: string, product: Products) {
-    this.productsRef.update(key, product)
+  delete(id: any): Observable<any> {
+    return this.http.delete(`${baseUrl}/${id}`);
   }
-
-  deleteProduct(key: string) {
-    return this.productsRef.remove(key)
-  }
-
 }
