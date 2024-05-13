@@ -20,7 +20,7 @@ export class FormProductsComponent {
     this.productForm = this.fb.group({
       name: new FormControl('', [Validators.required, Validators.minLength(5)]),
       price: new FormControl('', [Validators.required, Validators.max(750)]),
-      desc: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      description: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       sale: new FormControl(''),
       date: new FormControl('', [Validators.required]),
       photo: new FormControl(''),

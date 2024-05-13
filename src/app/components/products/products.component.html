@@ -1,5 +1,5 @@
 <div class="flex justify-around items-center pt-7 pb-7">
-    <h1 class="text-3xl">TEXTO DE EJEMPLO</h1>
+    <h1 class="text-2xl font-semibold">Explore our new line products!</h1>
     <div class="flex gap-16">
         <select name="filters" class="border border-black rounded-md px-2 font-semibold">
             <option selected disabled hidden>SORT PRODUCTS BY</option>
@@ -40,24 +40,24 @@
 
 <section class="bg-[wheat]">
     <article class="grid grid-cols-4 gap-0.5">
-        <!-- <div *ngFor="let product of products; let i = index;" class="flex flex-col border border-gray-400 py-5 px-5">
+        <div *ngFor="let product of products;" class="flex flex-col border border-gray-400 py-5 px-5">
             <div class="flex justify-end items-center gap-3">
-                <button class="border" >Edit</button>
-                <button class="border" >Delete</button>
+                <button class="bg-gray-200 w-20 py-1">Edit</button>
+                <button class="bg-gray-200 w-20 py-1" (click)="deleteProduct()">Delete</button>
             </div>
             <div class="flex justify-center">
                 <td>
-                    <img src='#' alt="product_img" width="220" height="350" class="py-7">
+                    <img src='/assets/images/coat-hanger.png' alt="product_img" width="220" height="350" class="py-7">
                 </td>
             </div>
             <div class="flex justify-around items-center">
                 <span class="font-medium text-2xl">{{product.name}}</span>
                 <span class="text-xl">{{product.price}}€</span>
             </div>
-            <span class="text-md text-center py-5">{{product.description}}</span>
+            <span class="text-md text-center py-4">{{product.description}}</span>
             <div class="flex justify-end">
                 <span class="text-sm text-gray-600">Product added the {{product.date}}</span>
             </div>
-        </div> -->
+        </div>
     </article>
 </section>
