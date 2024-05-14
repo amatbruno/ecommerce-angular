@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { DataService } from '../../services/data-service.service';
+import { Products } from '../../models/common.model';
+import e from 'express';
 
 @Component({
   selector: 'app-form-products',

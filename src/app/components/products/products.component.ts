@@ -17,17 +17,7 @@ export class ProductsComponent implements OnInit {
   currentIndex = -1;
   name = '';
 
-  @Input() currentProductInput: Products = {
-    name: '',
-    price: undefined,
-    description: '',
-    onSale: false,
-    date: '',
-    imageUrl: ''
-  };
-
   constructor(private dataService: DataService,
-    private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -51,16 +41,15 @@ export class ProductsComponent implements OnInit {
     this.currentIndex = -1;
   }
 
-  deleteProduct(): void {
-    this.dataService.delete(this.currentProductInput.key)
+  deleteProduct(product: Products): void {
+    this.currentProduct = product;
+    this.dataService.delete(product.id)
       .subscribe({
         next: (res) => {
-          console.log(res);
+          this.refreshList();
           this.router.navigate(['/products']);
         },
         error: (e) => console.error(e)
       });
   }
-
-
 }

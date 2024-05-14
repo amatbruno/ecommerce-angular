@@ -1,0 +1,57 @@
+@if (viewMode){
+@if (currentProduct . id){
+<h4>Product</h4>
+<div>
+    <label><strong>Title:</strong></label> {{ currentProduct . name }}
+</div>
+<div>
+    <label><strong>Description:</strong></label>
+    {{ currentProduct . description }}
+</div>
+}
+@else
+{<p>Please click on a Product...</p>}
+}
+@else
+{
+@if (currentProduct . id) {
+<div class="py-10 w-[300px] m-auto">
+    <h4 class="text-center font-semibold">Product</h4>
+    <form>
+        <div class="form-group">
+            <label class="text-sm" for="name">Name</label>
+            <input required type="text" class="form-control" id="title" formControlName="currentProduct.name"
+                name="name" />
+        </div>
+        <div class="form-group">
+            <label class="text-sm" for="description">Price</label>
+            <input required type="number" class="form-control" formControlName="currentProduct.price" name="price" />
+        </div>
+        <div class="form-group">
+            <label class="text-sm" class="text-sm" for="description">Description</label>
+            <input required type="text" class="form-control" formControlName="currentProduct.description"
+                name="description" />
+        </div>
+        <div class="form-group flex items-start justify-start gap-3">
+            <label class="text-sm" for="onSale">On sale?</label>
+            <input type="checkbox" formControlName="currentProduct.onSale" name="onSale" />
+        </div>
+        <div class="form-group">
+            <label class="text-sm" for="date">Date</label>
+            <input required type="date" class="form-control" formControlName="currentProduct.date" name="date" />
+        </div>
+        <div class="form-group">
+            <label class="text-sm" for="photo">Image Product</label>
+            <input type="file" class="form-control" formControlName="currentProduct.imageUrl" name="photo" />
+        </div>
+    </form>
+
+    <button type="submit" class="bg-[wheat] w-full" (click)="updateProduct()">
+        Update
+    </button>
+    <p>{{ message }}</p>
+</div>
+}
+@else
+{<p>Cannot access this Product...</p>}
+}
