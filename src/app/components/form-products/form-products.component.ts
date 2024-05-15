@@ -37,7 +37,6 @@ export class FormProductsComponent {
     this.dataService.create(this.productForm.value)
       .subscribe({
         next: (res) => {
-          console.log(res);
           this.submitted = true;
         },
         error: (e) => console.error(e)
